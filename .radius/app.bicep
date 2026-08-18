@@ -86,7 +86,9 @@ resource springPetclinicContainer 'Radius.Compute/containers@2025-08-01-preview'
             value: 'postgres'
           }
           POSTGRES_URL: {
-            value: 'jdbc:postgresql://${postgresDb.properties.host}:${postgresDb.properties.port}/petclinic'
+            // Port is fixed at 5432 for Azure Database for PostgreSQL Flexible
+            // Server; the recipe does not publish a port output on the resource.
+            value: 'jdbc:postgresql://${postgresDb.properties.host}:5432/petclinic'
           }
           POSTGRES_USER: {
             value: 'myadmin'
